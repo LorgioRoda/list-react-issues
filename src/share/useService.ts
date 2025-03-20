@@ -29,7 +29,7 @@ export const useService = <T>(serviceFunction: () => Promise<T>, options: UseSer
     if (!lazy) {
       fetchData();
     }
-  }, [...dependencies, fetchData]);
+  }, [...dependencies]);
 
   return { data, loading, error, fetchData };
 };

@@ -8,9 +8,7 @@ export const GET_REACT_ISSUES = gql`
           ... on Issue {
             id
             title
-            body
             state
-            url
           }
         }
       }

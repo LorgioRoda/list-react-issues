@@ -1,7 +1,13 @@
+import { Comment } from "../../comments/domain/Comment"
+
 export interface Issue {
     id: string,
     title: string,
     state: State
+    comments: Comment[]
 }
 
-type State = 'open' | 'close'
+export enum State {
+    open= 'open',
+    close = 'closed'
+}

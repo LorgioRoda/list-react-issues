@@ -1,55 +1,105 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { getComments } from "../../infrastructure/interceptors/getComments";
 import { useService } from "../../../../share/useService";
 import { Comment } from "../../domain/Comment";
+import { CommentsListSkeleton } from "./CommentsListSkeleton";
+import { Issue } from "../../../Issue/domain/Issue";
+import { CommentsEmptyState } from "../EmptyComments/EmptyComments";
 
-const CommentListContainer = styled.div`
-  margin-top: 10px;
-  padding: 10px;
-  border-top: 1px solid #ddd;
+const ListContainer = styled.ul.attrs({ role: "list" })`
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
-const CommentItem = styled.div`
+const ListItem = styled.li.attrs({ role: "listitem" })`
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #d0d7de;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 `;
 
 const Avatar = styled.img`
-  width: 30px;
-  height: 30px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 `;
 
-const CommentContent = styled.div`
+const Content = styled.div`
   display: flex;
+  gap: 4px;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const Author = styled.strong`
+  display: block;
+  font-weight: 600;
+  color: #0969da;
+  margin-bottom: 4px;
+`;
+
+const Body = styled.p`
+  margin: 0;
+  color: #24292f;
+  line-height: 1.5;
+`;
+
+const Timestamp = styled.time`
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #57606a;
+`;
+
+const CommentsWrappers = styled.div`
+  display: flex;
+  padding: 1rem;
   flex-direction: column;
 `;
 
 interface CommentsListProps {
-  issueId: string;
+  issue: Issue;
 }
 
-export const CommentsList = ({ issueId }: CommentsListProps) => {
-  const { data: comments, loading } = useService(() => getComments(issueId), { dependencies: [issueId] });
-
-  if (loading) return <p>Loading comments...</p>;
-  if (!comments || comments.length === 0) return <p>No comments found.</p>;
+export const CommentsList = ({ issue }: CommentsListProps): ReactNode => {
+  const { data: comments, loading } = useService(() => getComments(issue.id), {
+    dependencies: [issue],
+  });
+  
+  if (loading) return <CommentsListSkeleton/>;
+  if (!comments || comments.length === 0 ) return <CommentsEmptyState issue={issue} />;
 
   return (
-    <CommentListContainer>
-      {comments.map((comment: Comment) => (
-        <CommentItem key={comment.id}>
-          <Avatar src={comment.author.avatar} alt={comment.author.name} />
-          <CommentContent>
-            <strong>{comment.author.name}</strong>
-            <p>{comment.body}</p>
-            <small>{new Date(comment.createdAt).toLocaleDateString()}</small>
-          </CommentContent>
-        </CommentItem>
-      ))}
-    </CommentListContainer>
+    <CommentsWrappers>
+      <h3>{issue.title}</h3>
+        <ListContainer>
+        {comments.map((comment: Comment) => (
+          <ListItem key={comment.id}>
+            <Avatar
+              src={comment.author.avatar}
+              alt={`${comment.author.name}'s avatar`}
+              loading="lazy"
+              width="40"
+              height="40"
+            />
+            <Content>
+              <Author>{comment.author.name}</Author>
+              <Body>{comment.body}</Body>
+              <Timestamp dateTime={comment.createdAt}>
+                {new Date(comment.createdAt).toLocaleDateString()}
+              </Timestamp>
+            </Content>
+          </ListItem>
+        ))}
+      </ListContainer>
+    </CommentsWrappers>
+    
   );
 };

@@ -9,6 +9,7 @@ export const GET_REACT_ISSUES = gql`
             id
             title
             state
+            url
           }
         }
       }

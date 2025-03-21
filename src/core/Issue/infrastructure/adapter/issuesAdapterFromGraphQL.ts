@@ -7,5 +7,6 @@ export const issuesAdapterFromGraphQL = (data: any): Issue[] => {
     id: edge.node.id,
     title: edge.node.title,
     state: edge.node.state.toLowerCase(),
+    url: edge.node.url
   }));
 };

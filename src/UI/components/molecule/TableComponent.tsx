@@ -47,7 +47,7 @@ export type Column = {
 interface StatusTableProps<T> {
   columns: Column[]
   row: T[]
-  onRowClick: (e: T) => void,
+  onRowClick: (issue: Issue) => void,
 }
 
 export const StatusTable = <T extends Issue>({ row, columns, onRowClick }: StatusTableProps<T>) => {
@@ -65,6 +65,7 @@ export const StatusTable = <T extends Issue>({ row, columns, onRowClick }: Statu
         </tr>
       </thead>
       <tbody>
+        {!row.length && <p>Upp We don't find result</p> }
         {row.map((item) => (
           <TableRow key={item.id} onClick={() => onRowClick?.(item)}>
             <TableCell>{item.title}</TableCell>

@@ -3,7 +3,7 @@ import { useService } from "./share/useService";
 import { Column, StatusTable } from "./UI/components/molecule/TableComponent";
 import { TextFieldComponent } from "./UI/components/atoms/TextFieldComponent";
 import { CheckComponent } from "./UI/components/atoms/CheckComponent";
-import { State } from "./core/Issue/domain/Issue";
+import { Issue, State } from "./core/Issue/domain/Issue";
 import { StatusTableSkeleton } from "./UI/components/molecule/SkeletonTableComponent";
 import { CheckGroup, Label } from "./UI/components/molecule/CheckGroup/CheckGroup";
 import { useDebouncedValue } from "./share/useDebouncedValue";
@@ -11,6 +11,7 @@ import { getAllIssues } from "./core/Issue/infrastructure/interceptors/getAllIss
 import { getIssuesByState } from "./core/Issue/infrastructure/interceptors/getIssuesByState";
 import { getIssuesByTitle } from "./core/Issue/infrastructure/interceptors/getIssuesByTitle";
 import { CommentsList } from "./core/comments/UI/CommentsList/CommentsList"
+import { ModalComponent } from "./UI/components/molecule/Modal/Modal";
 
 
 const columns: Column[] = [
@@ -21,7 +22,7 @@ const columns: Column[] = [
 export const IssuesList = (): ReactNode => {
   const [stateFilter, setStateFilter] = useState<State | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
+  const [selectedIssue, setSelectedIssue] = useState<Issue | undefined>(undefined);
   const debouncedSearchTerm = useDebouncedValue(searchTerm);
 
   const fetchIssues = () => {
@@ -59,8 +60,19 @@ export const IssuesList = (): ReactNode => {
         </Label>
       </CheckGroup>
 
-      {loading ? <StatusTableSkeleton /> : <StatusTable columns={columns} row={data || []} onRowClick={(issue) => setSelectedIssueId(issue.id)} />}
-      {selectedIssueId && <CommentsList  issueId={selectedIssueId} />}
+      {loading ? (
+        <StatusTableSkeleton />
+      ) : (
+        <StatusTable
+          columns={columns}
+          row={data || []}
+          onRowClick={(issue) => setSelectedIssue(issue)}
+        />
+      )}
+
+      <ModalComponent open={selectedIssue} handleClose={() => setSelectedIssue(null)}>
+        <CommentsList issue={selectedIssue}  />
+      </ModalComponent>
     </>
   );
 };

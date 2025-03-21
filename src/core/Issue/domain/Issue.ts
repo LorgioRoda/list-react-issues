@@ -1,4 +1,4 @@
-import { Comment } from "../../comments/domain/Comment"
+import { Comment } from "../../comment/domain/Comment"
 
 export interface Issue {
     id: string,

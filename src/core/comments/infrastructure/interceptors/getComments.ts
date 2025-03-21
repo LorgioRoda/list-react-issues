@@ -11,7 +11,6 @@ export const getComments = async (issueId: string): Promise<Comment[]> => {
       });
   
      const comments = commentsAdapterFromGraphQL(data)
-     console.log(comments);
      return comments
     } catch (error) {
       console.error("GraphQL Error:", error);

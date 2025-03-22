@@ -1,17 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
+import { ErrorContent } from "../core/error/domain/Error";
 
 interface UseServiceOptions {
-  lazy?: boolean;
   dependencies?: any[];
 }
 
 export const useService = <T>(serviceFunction: () => Promise<T>, options: UseServiceOptions = {}) => {
-  const { lazy = false, dependencies = [] } = options;
+  const { dependencies = [] } = options;
 
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(!lazy);
-  const [error, setError] = useState<string | null>(null);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<ErrorContent | null>(null);
   const fetchData = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -19,14 +18,14 @@ export const useService = <T>(serviceFunction: () => Promise<T>, options: UseSer
       const result = await serviceFunction();
       setData(result);
     } catch (err) {
-      setError((err as Error).message);
+      setError({ code: err.code ?? "Unknown", message: err.message ?? "Unknown error" });
     } finally {
       setLoading(false);
     }
   }, [serviceFunction]);
 
   useEffect(() => {
-    if (!lazy) {
+    if (!loading) {
       fetchData();
     }
   }, [...dependencies]);

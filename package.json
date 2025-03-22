@@ -47,8 +47,5 @@
   },
   "resolutions": {
     "styled-components": "^5"
-  },
-  "bin": {
-    "create-project-cli-scaffold": "./cli.js"
   }
 }

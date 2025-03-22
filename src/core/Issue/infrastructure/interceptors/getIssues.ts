@@ -2,9 +2,9 @@ import { client } from "../../../../graphql/client";
 import { GET_REACT_ISSUES } from "../GraphqlGetIssues";
 import { issuesAdapterFromGraphQL } from "../adapter/issuesAdapterFromGraphQL";
 import { Issue, State } from "../../domain/Issue";
-import { buildQuery } from "../../../../share/buildQuery";
 import { getErrorMapper , Error} from "../../../error/domain/Error";
 import { ApolloError } from "@apollo/client";
+import { buildQuery } from "../../../../share/buildQuery";
 
 
 interface GetIssuesParams {

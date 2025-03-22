@@ -1,29 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import { CheckComponent } from "../../../../UI/components/atoms/CheckComponent";
 import { TextFieldComponent } from "../../../../UI/components/atoms/TextFieldComponent";
-import { CheckGroup, Label } from "../../../../UI/components/molecule/CheckGroup/CheckGroup";
-import { State } from "../../domain/Issue";
+import { ToggleGroupComponent } from "../../../../UI/components/molecule/ToggleGroupComponent";
+import { StateFilterUI } from "../../../../App";
 
-
-interface Props {
+interface IssueFiltersProps {
   search: string;
   onSearchChange: (value: string) => void;
-  stateFilter: State | null;
-  onStateChange: (state: State | null) => void;
+  stateFilter: StateFilterUI;
+  onStateChange: (state: StateFilterUI) => void;
 }
 
 const FiltersWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 24px;
-`;
-
-const FilterOptions = styled(CheckGroup)`
-  display: flex;
   gap: 16px;
-  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 24px;
+  }
 `;
 
 export const IssueFilters = ({
@@ -31,7 +27,7 @@ export const IssueFilters = ({
   onSearchChange,
   stateFilter,
   onStateChange,
-}: Props) => {
+}: IssueFiltersProps ) => {
   return (
     <FiltersWrapper>
       <TextFieldComponent
@@ -40,29 +36,7 @@ export const IssueFilters = ({
         onChange={(e) => onSearchChange(e.target.value)}
       />
 
-      <FilterOptions legend="Filter Issues">
-        <Label role="radio" aria-checked={stateFilter === null}>
-          <CheckComponent
-            checked={stateFilter === null}
-            handleChange={() => onStateChange(null)}
-          />
-          All
-        </Label>
-        <Label role="radio" aria-checked={stateFilter === State.open}>
-          <CheckComponent
-            checked={stateFilter === State.open}
-            handleChange={() => onStateChange(State.open)}
-          />
-          Open
-        </Label>
-        <Label role="radio" aria-checked={stateFilter === State.close}>
-          <CheckComponent
-            checked={stateFilter === State.close}
-            handleChange={() => onStateChange(State.close)}
-          />
-          Closed
-        </Label>
-      </FilterOptions>
+    <ToggleGroupComponent value={stateFilter} onChange={onStateChange} />
     </FiltersWrapper>
   );
 };

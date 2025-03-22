@@ -11,7 +11,6 @@ const Container = styled.section`
   padding: 2rem;
   gap: 1rem;
   text-align: center;
-  background-color: #f6f8fa;
   border-radius: 12px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 `;

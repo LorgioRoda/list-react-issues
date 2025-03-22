@@ -15,6 +15,8 @@ export const TextFieldComponent = ({ label, value, onChange }: TextFieldComponen
       id="fullWidth" 
       value={value} 
       onChange={onChange}
+      variant='outlined'
+      size='small'
     />
   );
 };

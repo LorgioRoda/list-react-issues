@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { commentsAdapterFromGraphQL } from "../../../../../src/core/comment/infrastructure/adapter/commentsAdapterFromGraphQL";
-import { mockComment } from "../../../../mocks/comments";
+import { mockComment } from "../../../../mocks/comment/commentsFromGraphql";
 
 
 describe("commentsAdapterFromGraphQL", () => {

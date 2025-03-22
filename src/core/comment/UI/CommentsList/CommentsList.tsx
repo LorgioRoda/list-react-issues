@@ -6,6 +6,7 @@ import { Comment } from "../../domain/Comment";
 import { CommentsListSkeleton } from "./CommentsListSkeleton";
 import { Issue } from "../../../Issue/domain/Issue";
 import { CommentsEmptyState } from "../EmptyComments/EmptyComments";
+import { ErrorPage } from "../../../error/UI/ErrorPage";
 
 const ListContainer = styled.ul.attrs({ role: "list" })`
   all: unset;
@@ -69,18 +70,18 @@ interface CommentsListProps {
 }
 
 export const CommentsList = ({ issue }: CommentsListProps): ReactNode => {
-  const { data: comments, loading } = useService(() => getComments(issue.id), {
+  const { data: comments, loading, error } = useService(() => getComments(issue.id), {
     dependencies: [issue],
   });
   
   if (loading) return <CommentsListSkeleton/>;
-  if (!comments || comments.length === 0 ) return <CommentsEmptyState issue={issue} />;
+  if (comments?.length === 0 ) return <CommentsEmptyState issue={issue} />;
 
   return (
     <CommentsWrappers>
       <h3>{issue.title}</h3>
         <ListContainer>
-        {comments.map((comment: Comment) => (
+        {error ? <ErrorPage code={error.code} message={error.message}/> : comments?.map((comment: Comment) => (
           <ListItem key={comment.id}>
             <Avatar
               src={comment.author.avatar}

@@ -7,6 +7,8 @@ import { CommentsListSkeleton } from "./CommentsListSkeleton";
 import { Issue } from "../../../Issue/domain/Issue";
 import { CommentsEmptyState } from "../EmptyComments/EmptyComments";
 import { ErrorPage } from "../../../error/UI/ErrorPage";
+import { Author } from "../../../../UI/components/atoms/Author";
+import { Avatar } from "../../../../UI/components/atoms/Avatar"
 
 const ListContainer = styled.ul.attrs({ role: "list" })`
   all: unset;
@@ -25,25 +27,11 @@ const ListItem = styled.li.attrs({ role: "listitem" })`
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 `;
 
-const Avatar = styled.img`
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-`;
-
 const Content = styled.div`
   display: flex;
   gap: 4px;
   width: 100%;
   flex-direction: column;
-`;
-
-const Author = styled.strong`
-  display: block;
-  font-weight: 600;
-  color: #0969da;
-  margin-bottom: 4px;
 `;
 
 const Body = styled.p`

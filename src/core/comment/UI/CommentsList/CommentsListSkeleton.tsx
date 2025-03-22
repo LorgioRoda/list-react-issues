@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import styled, { keyframes } from "styled-components";
+import { Avatar } from "../../../../UI/components/atoms/Avatar";
 
 const pulse = keyframes`
   0% {
@@ -31,10 +32,7 @@ const SkeletonItem = styled.li`
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 `;
 
-const SkeletonAvatar = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+const SkeletonAvatar = styled(Avatar)`
   animation: ${pulse} 1.5s infinite ease-in-out;
 `;
 

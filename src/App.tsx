@@ -1,23 +1,20 @@
 import React, { ReactNode, useState } from "react";
 import { useService } from "./share/useService";
-import { Column, StatusTable } from "./UI/components/molecule/TableComponent/TableComponent";
+import { StatusTable } from "./UI/components/molecule/TableComponent";
 import { Issue, State } from "./core/Issue/domain/Issue";
-import { StatusTableSkeleton } from "./UI/components/molecule/TableComponent/SkeletonTableComponent";
+import { StatusTableSkeleton } from "./UI/components/molecule/SkeletonTableComponent";
 import { useDebouncedValue } from "./share/useDebouncedValue";
 import { getIssues } from "./core/Issue/infrastructure/interceptors/getIssues";
 import { CommentsList } from "./core/comment/UI/CommentsList/CommentsList"
-import { ModalComponent } from "./UI/components/molecule/Modal/Modal";
+import { ModalComponent } from "./UI/components/molecule/Modal";
 import { IssueFilters } from "./core/Issue/UI/IssueFilters/IssueFilters";
 import { ErrorPage } from "./core/error/UI/ErrorPage";
 
 
-const columns: Column[] = [
-  { id: "title", label: "Title" },
-  { id: "state", label: "State" },
-];
+export type StateFilterUI = State | null;
 
 export const IssuesList = (): ReactNode => {
-  const [stateFilter, setStateFilter] = useState<State | null>(null);
+  const [stateFilter, setStateFilter] = useState<StateFilterUI>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedIssue, setSelectedIssue] = useState<Issue | null>(null);
   const debouncedSearchTerm = useDebouncedValue(searchTerm);
@@ -34,18 +31,11 @@ export const IssuesList = (): ReactNode => {
         stateFilter={stateFilter}
         onStateChange={setStateFilter}
       />
-
-      {loading ? (
-        <StatusTableSkeleton />
-      ) : (
-        <StatusTable
-          columns={columns}
+      {error && <ErrorPage code={error.code} message={error.message} />}
+      {loading ? <StatusTableSkeleton />  : <StatusTable
           row={data ?? []}
           onRowClick={(issue) => setSelectedIssue(issue)}
-        >
-          {error && <ErrorPage code={error.code} message={error.message} />}
-        </StatusTable>
-      )}
+        />}
 
       <ModalComponent open={selectedIssue} handleClose={() => setSelectedIssue(null)}>
         {selectedIssue && <CommentsList issue={selectedIssue}  />}

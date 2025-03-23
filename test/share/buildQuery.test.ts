@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { State } from "../../src/core/Issue/domain/Issue";
-import { buildQuery } from "../../src/share/buildQuery";
+import { buildQuery } from "../../src/shared/buildQuery";
 
 
 describe("buildQuery", () => {

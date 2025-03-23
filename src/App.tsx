@@ -1,9 +1,9 @@
 import { ReactNode, useState } from "react";
-import { useService } from "./share/useService";
+import { useService } from "./shared/useService";
 import { TableComponent } from "./UI/components/molecule/TableComponent";
 import { Issue, State } from "./core/Issue/domain/Issue";
 import { StatusTableSkeleton } from "./UI/components/molecule/SkeletonTableComponent";
-import { useDebouncedValue } from "./share/useDebouncedValue";
+import { useDebouncedValue } from "./shared/useDebouncedValue";
 import { getIssues } from "./core/Issue/infrastructure/interceptors/getIssues";
 import { CommentsList } from "./core/comment/UI/CommentsList/CommentsList"
 import { ModalComponent } from "./UI/components/molecule/Modal";

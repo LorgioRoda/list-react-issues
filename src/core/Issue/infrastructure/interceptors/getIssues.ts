@@ -4,7 +4,7 @@ import { issuesAdapterFromGraphQL } from "../adapter/issuesAdapterFromGraphQL";
 import { Issue, State } from "../../domain/Issue";
 import { getErrorMapper , Error} from "../../../error/domain/Error";
 import { ApolloError } from "@apollo/client";
-import { buildQuery } from "../../../../share/buildQuery";
+import { buildQuery } from "../../../../shared/buildQuery";
 
 
 interface GetIssuesParams {

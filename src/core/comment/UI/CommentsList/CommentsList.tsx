@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 import { getComments } from "../../infrastructure/interceptors/getComments";
-import { useService } from "../../../../share/useService";
+import { useService } from "../../../../shared/useService";
 import { Comment } from "../../domain/Comment";
 import { CommentsListSkeleton } from "./CommentsListSkeleton";
 import { Issue } from "../../../Issue/domain/Issue";

@@ -32,7 +32,7 @@ export const IssuesList = (): ReactNode => {
         onStateChange={setStateFilter}
       />
       {error && <ErrorPage code={error.code} message={error.message} />}
-      {loading ? <StatusTableSkeleton />  : <StatusTable
+      {loading && !error ? <StatusTableSkeleton />  : <StatusTable
           row={data ?? []}
           onRowClick={(issue) => setSelectedIssue(issue)}
         />}

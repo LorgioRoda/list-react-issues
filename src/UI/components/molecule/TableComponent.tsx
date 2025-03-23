@@ -7,7 +7,6 @@ const Table = styled.table`
   margin-top: 20px;
   border-radius: 4px;
   border: 0.5px solid #ddd;
-  cursor: pointer;
 `;
 
 const TableHeader = styled.th`
@@ -21,6 +20,7 @@ const TableCell = styled.td`
   padding: 10px;
   border-bottom: 0.5px solid #ddd;
   font-size: small;
+  cursor: pointer;
 `;
 
 const StatusBadge = styled.span<{ status: string }>`
@@ -51,6 +51,8 @@ interface StatusTableProps<T> {
 
 export const StatusTable = <T extends Issue>({ row, columns, onRowClick }: StatusTableProps<T>): ReactNode => {
   return (
+    <>
+    {!row.length && <h3>!Ups We don't found Issues</h3> }
     <Table>
       {
         columns?.length ?  <thead>
@@ -77,5 +79,7 @@ export const StatusTable = <T extends Issue>({ row, columns, onRowClick }: Statu
         ))}
       </tbody>
     </Table>
+    </>
+   
   );
 };

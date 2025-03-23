@@ -31,11 +31,19 @@ export const IssuesList = (): ReactNode => {
         stateFilter={stateFilter}
         onStateChange={setStateFilter}
       />
-      {error && <ErrorPage code={error.code} message={error.message} />}
-      {loading && !error ? <StatusTableSkeleton />  : <TableComponent
-          row={data ?? []}
-          onRowClick={(issue) => setSelectedIssue(issue)}
-        />}
+
+    {error ? (
+      <ErrorPage code={error.code} message={error.message} />
+    ) : loading ? (
+      <StatusTableSkeleton data-testid="skeleton-table" />
+    ) : data?.length === 0 ? (
+      <h3>¡Ups! We don't found Issues</h3>
+    ) : (
+      <TableComponent
+        row={data ?? []}
+        onRowClick={(issue) => setSelectedIssue(issue)}
+      />
+    )}
 
       <ModalComponent open={!!selectedIssue} handleClose={() => setSelectedIssue(null)}>
         {selectedIssue && <CommentsList issue={selectedIssue}  />}

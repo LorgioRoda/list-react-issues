@@ -52,7 +52,6 @@ interface TableComponentProps<T> {
 export const TableComponent = <T extends Issue>({ row, columns, onRowClick }: TableComponentProps<T>): ReactNode => {
   return (
     <>
-    {!row.length && <h3>!Ups We don't found Issues</h3> }
     <Table>
       {
         columns?.length ?  <thead>

@@ -20,6 +20,6 @@ export const getErrorMapper = (name: Error): ErrorContent => {
       message: "An unexpected error occurred. Please try again later.",
     },
   };
-
+  
   return map[name] || map.Unknown;
 };

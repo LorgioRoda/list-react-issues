@@ -44,6 +44,7 @@ It will be available at `http://localhost:5173`
 - Loading skeleton and error messages
 - Unit and integration tests (`vitest`)
 - End-to-end tests (`playwright`)
+- Control error
 
 ---
 

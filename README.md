@@ -52,6 +52,11 @@ It will be available at `http://localhost:5173`
 
 _You can add a video or demo preview of the project here._
 
+
+
+https://github.com/user-attachments/assets/e6641a60-e2e6-4820-a78f-0adfdfdc5130
+
+
 ---
 
 ## 🧠 Architecture

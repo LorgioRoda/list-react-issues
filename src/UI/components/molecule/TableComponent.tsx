@@ -43,13 +43,13 @@ export type Column = {
   label: string;
 };
 
-interface StatusTableProps<T> {
+interface TableComponentProps<T> {
   columns?: Column[]
   row: T[]
   onRowClick: (issue: Issue) => void,
 }
 
-export const StatusTable = <T extends Issue>({ row, columns, onRowClick }: StatusTableProps<T>): ReactNode => {
+export const TableComponent = <T extends Issue>({ row, columns, onRowClick }: TableComponentProps<T>): ReactNode => {
   return (
     <>
     {!row.length && <h3>!Ups We don't found Issues</h3> }

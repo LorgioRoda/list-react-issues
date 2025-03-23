@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { useService } from "./share/useService";
-import { StatusTable } from "./UI/components/molecule/TableComponent";
+import { TableComponent } from "./UI/components/molecule/TableComponent";
 import { Issue, State } from "./core/Issue/domain/Issue";
 import { StatusTableSkeleton } from "./UI/components/molecule/SkeletonTableComponent";
 import { useDebouncedValue } from "./share/useDebouncedValue";
@@ -32,7 +32,7 @@ export const IssuesList = (): ReactNode => {
         onStateChange={setStateFilter}
       />
       {error && <ErrorPage code={error.code} message={error.message} />}
-      {loading && !error ? <StatusTableSkeleton />  : <StatusTable
+      {loading && !error ? <StatusTableSkeleton />  : <TableComponent
           row={data ?? []}
           onRowClick={(issue) => setSelectedIssue(issue)}
         />}

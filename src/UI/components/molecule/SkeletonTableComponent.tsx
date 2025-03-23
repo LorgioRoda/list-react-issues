@@ -31,7 +31,7 @@ const SkeletonBlock = styled.div`
 
 export const StatusTableSkeleton = () => {
   return (
-    <SkeletonWrapper>
+    <SkeletonWrapper data-testid="skeleton-table">
       <TableSkeleton>
         <tbody>
           {Array.from({ length: 5 }).map((_, index) => (

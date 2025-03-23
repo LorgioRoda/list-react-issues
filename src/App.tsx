@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { useService } from "./share/useService";
 import { TableComponent } from "./UI/components/molecule/TableComponent";
 import { Issue, State } from "./core/Issue/domain/Issue";
@@ -37,7 +37,7 @@ export const IssuesList = (): ReactNode => {
           onRowClick={(issue) => setSelectedIssue(issue)}
         />}
 
-      <ModalComponent open={selectedIssue} handleClose={() => setSelectedIssue(null)}>
+      <ModalComponent open={!!selectedIssue} handleClose={() => setSelectedIssue(null)}>
         {selectedIssue && <CommentsList issue={selectedIssue}  />}
       </ModalComponent>
     </>

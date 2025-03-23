@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { TextFieldComponent } from "../../../../UI/components/atoms/TextFieldComponent";
 import { ToggleGroupComponent } from "../../../../UI/components/molecule/ToggleGroupComponent";

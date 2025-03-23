@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import styled, { keyframes } from "styled-components";
 import { Avatar } from "../../../../UI/components/atoms/Avatar";
 

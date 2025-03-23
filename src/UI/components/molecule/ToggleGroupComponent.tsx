@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { State } from "../../../core/Issue/domain/Issue";
 
@@ -17,7 +16,7 @@ const StyledToggleGroup = styled.div`
   border-radius: 4px;
 `;
 
-const Toggle = styled.button<{ active?: boolean }>`
+const Toggle = styled.button<{ active: boolean }>`
   padding: 6px 16px;
   border: none;
   border-radius: 8px;

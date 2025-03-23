@@ -1,8 +1,14 @@
-import * as React from 'react';
 import Modal from '@mui/material/Modal';
+import { ReactNode } from 'react';
 import styled from "styled-components";
 
-export const ModalComponent = ({ open, children, handleClose }) => {
+interface ModalComponentProps {
+  open: boolean,
+  children: ReactNode,
+  handleClose: () => void
+}
+
+export const ModalComponent = ({ open, children, handleClose }: ModalComponentProps) => {
   return (
     <Modal
       open={!!open}

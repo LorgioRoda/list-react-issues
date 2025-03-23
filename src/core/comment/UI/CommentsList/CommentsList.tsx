@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { getComments } from "../../infrastructure/interceptors/getComments";
 import { useService } from "../../../../share/useService";
@@ -81,7 +81,7 @@ export const CommentsList = ({ issue }: CommentsListProps): ReactNode => {
             <Content>
               <Author>{comment.author.name}</Author>
               <Body>{comment.body}</Body>
-              <Timestamp dateTime={comment.createdAt}>
+              <Timestamp>
                 {comment.createdAt.toLocaleDateString()}
               </Timestamp>
             </Content>

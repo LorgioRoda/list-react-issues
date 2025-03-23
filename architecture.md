@@ -7,15 +7,20 @@ It is inspired by **Hexagonal Architecture** but implemented in a lighter way, b
 ## Folder Structure
 
 ```
-├── apps/
-│   └── [app name]
-├── core/
-│   ├── domain/           # Business rules (entities, value objects, interfaces, etc.)
-│   ├── application/      # Use cases (services, application logic)
-│   ├── infrastructure/   # Concrete implementations (interceptors, adapters, etc.)
-│   └── [other vertical slices by domain]
-├── libs/                # Reusable libraries (UI components, hooks, etc.)
-└── shared/              # Shared code across apps/libs (themes, helpers, common contexts)
+├── src/
+│   ├── core/             # Vertical slices with domain, application, and infrastructure layers
+│   ├── graphql/          # GraphQL operations and clients
+│   ├── shared/            # Shared utilities across the app (helpers, constants, etc.)
+│   ├── state/            # App state management (atoms, stores, etc.)
+│   ├── theme/            # Theme config, and provider setup
+│   ├── UI/               # Reusable UI components
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── end-to-end/           # E2E tests with Playwright
+├── test/                 # Unit and integration tests
+├── public/               # Static assets
+├── .husky/               # Git hooks
 ```
 
 ## Vertical Slicing in `core`
@@ -23,6 +28,7 @@ It is inspired by **Hexagonal Architecture** but implemented in a lighter way, b
 Inside the `core/` folder, we use the **vertical slicing** pattern, organizing each feature or domain as a vertical slice with its own structure for `domain`, `application`, and `infrastructure`. This allows for isolated development per feature, improving scalability and enabling unit testing.
 
 ### Layers inside each slice:
+
 - **domain**: Defines the business logic and domain model (rules, entities, interfaces).
 - **application**: Contains use cases and application-specific logic.
 - **infrastructure**: Provides concrete implementations of interfaces declared in `domain` (e.g., GraphQL interceptors or service adapters).

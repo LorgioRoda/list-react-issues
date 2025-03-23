@@ -63,7 +63,7 @@ https://github.com/user-attachments/assets/e6641a60-e2e6-4820-a78f-0adfdfdc5130
 
 The project follows a **hexagonal architecture-inspired** folder structure, separating domain logic, infrastructure, UI, and shared services.
 
-👉 Learn more in [README.arquitectura.md](./architecture.md)
+👉 Learn more in [Project Architecture](./architecture.md)
 
 ---
 

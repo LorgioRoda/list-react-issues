@@ -18,11 +18,8 @@ export const useService = <T>(serviceFunction: () => Promise<T>, options: UseSer
       const result = await serviceFunction();
       setData(result);
     } catch (err) {
-      if (err instanceof Error) {
-        setError({ code: 'Error', message: err.message });
-      } else {
-        setError({ code: 'Unknown', message: 'Unknown error' });
-      }
+      const error = err as ErrorContent;
+      setError({ code: error?.code ?? "Unknown", message: error?.message ?? "Unknown error" });
     } finally {
       setLoading(false);
     }

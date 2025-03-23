@@ -10,8 +10,8 @@ It is inspired by **Hexagonal Architecture** but implemented in a lighter way, b
 ├── src/
 │   ├── core/             # Vertical slices with domain, application, and infrastructure layers
 │   ├── graphql/          # GraphQL operations and clients
-│   ├── shared/            # Shared utilities across the app (helpers, constants, etc.)
-│   ├── state/            # App state management (atoms, stores, etc.)
+│   ├── shared/           # Shared utilities across the app (helpers, constants, etc.)
+│   ├── state/            # App state management
 │   ├── theme/            # Theme config, and provider setup
 │   ├── UI/               # Reusable UI components
 │   ├── App.tsx

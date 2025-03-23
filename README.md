@@ -11,8 +11,8 @@ Make sure you have the following installed:
 
 ### 2. Clone the repository
 ```bash
-git clone https://github.com/LorgioRoda/mi-repo.git
-cd mi-repo
+git clone https://github.com/LorgioRoda/list-react-issues.git
+cd list-react-issues
 pnpm install
 ```
 

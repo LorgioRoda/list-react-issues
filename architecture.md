@@ -39,7 +39,4 @@ To keep UI components independent from the technology used for data fetching (su
 
 This design enables easier testing and allows us to change the underlying implementation without affecting UI components.
 
----
-
-Let me know if you want to include a concrete code example or visual diagram to enrich this documentation.
 
